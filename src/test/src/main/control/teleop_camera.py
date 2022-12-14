@@ -22,12 +22,12 @@ def callback(data):
        
 
 def control_camera(joys_i):
-    global next_pos
+    global next_pos_pan
     
     
-    next_pos -=  joys_i
-    axis.pan =  int((next_pos + 180) % 360) - 180    
-    print(next_pos,"    ", joys_i)
+    next_pos_pan -=  joys_i
+    axis.pan =  int((next_pos_pan + 180) % 360) - 180    
+    print(next_pos_pan,"    ", joys_i)
 
 
 
@@ -36,14 +36,14 @@ def start():
         global pub_axis
         global axis
         global joystick_input
-        global next_pos
+        global next_pos_pan
         
         
         
         axis = Axis()
         joystick_input = 0
 
-        next_pos = 0 
+        next_pos_pan = 0 
 
 
         rospy.init_node('teleop_camera_node')
