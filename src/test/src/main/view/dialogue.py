@@ -2,6 +2,7 @@ from ast import If
 from email.policy import default
 from re import X
 from tkinter import DISABLED, Label, Text
+from event import *
 
 social_dialogue_dict = {   
     "Start Q":
@@ -51,10 +52,17 @@ nonsocial_dialogue_dict = {
 
 }
 
+mega_dict = {
+    "1": "Turn Left",
+    "2": "Turn Right",
+    "3": "Stop",
+    "4": "Go Forward",
+    "5": "Go Backward"
+}
 social_mode = False
 
 dbox_info = {
-    "x": 660,
+    "x": 560,
     "y": 800,
     "width": 800,
     "height": 180
@@ -74,13 +82,15 @@ class DialogueBox():
                                 bg='#e0de99')
         self.dialoguetext.config(text= self.dialogue)
         self.dialoguetext.place(x = self.x, y = self.y, width= self.width, height= self.height)
+        print("created a dialogue box!")
+        
+        subscribe("receive_command_text", self.change_dialogue)
 
     def change_dialogue(self, string):
+        print("here!_dialogue")
         self.state = string
-        
- 
-        
-        self.dialogue = social_dialogue_dict[self.state] if social_mode is True else nonsocial_dialogue_dict[self.state]
+        #self.dialogue = social_dialogue_dict[self.state] if social_mode is True else nonsocial_dialogue_dict[self.state]\
+        self.dialogue = mega_dict[self.state]
         self.dialoguetext.config(text= self.dialogue)
 
     
