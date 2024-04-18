@@ -286,7 +286,7 @@ class TaskCanvas(BaseCanvas):
         self.font = dict_info["font"]
         
         if global_variables.tutorial_mode:
-            self.text = '0/5'
+            self.text = '0/1'
         else:
             self.text = '0/13'
 
@@ -346,23 +346,13 @@ class TaskCanvas(BaseCanvas):
                 self.fsm.s910()
         else:
             
-            if c != 5:
-                EventManager.post_event("congratulations", -1)
-
-            if c == 2:
-                self.fsm.s12()
-            elif c == 4:
-                if self.fsm.is_s2:
-                    self.fsm.s23()
-
-            if c == 5:
-                if self.fsm.is_s3:
-                    self.fsm.s34()
+           if c == 1:
+                self.fsm.s12()   
             
             
 
         if global_variables.tutorial_mode:        
-            self.text = "{count}/5".format(count=str(c))
+            self.text = "{count}/1".format(count=str(c))
             self.canvas.delete('all')
             self.canvas.create_text(self.width/2, self.height/2, text= self.text, fill= self.color, font= self.font)
         else:
@@ -409,8 +399,6 @@ class MissCanavas(BaseCanvas):
     def agent_is_doing_mistake_in_assisted(self):
         return global_variables.jackalai_active and self.user == "agent"
             
-
-
 class ScoreCanvas(BaseCanvas):  
     def __init__(self, r, dict_info):
         super().__init__(r, dict_info)

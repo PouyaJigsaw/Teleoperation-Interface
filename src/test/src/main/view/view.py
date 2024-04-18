@@ -48,13 +48,15 @@ csv_reactive = "/home/pouya/catkin_ws/src/test/src/spreadsheets/ReactiveAvatars.
 
 
 def init():
-    
+
     if len(sys.argv) != 4 and len(sys.argv) != 3:
         print("Argument length:" + str(len(sys.argv)))
         print("Usage: python3 main.py tutorial 0/1(practice mode or not) n(number of mistakes)")
         print("Usage: python3 main.py p[0:infinite] social/nonsocial")
         sys.exit(1)
 
+
+    
     if len(sys.argv) == 4:
         arg1 = sys.argv[1]
         arg2 = sys.argv[2]
@@ -212,6 +214,8 @@ def main():
     rospy.Subscriber("joy", Joy, callback= joy_config, callback_args= widgets)
     
     inspection_page = InspectionPage(tab2, task_canvas)
+
+
     if not global_variables.tutorial_mode:
         gui_sfm = TeleopGUIMachine(timer_canvas, avalogue, dialogue_text, manual_button, auto_button, bar_canvas, danger_canvases, jackal_avatar= None, flashing_image=flashing_image, tsk_cnvs=task_canvas, cmr_frm = view_front, jckl_ai= jackal_ai, cntdwn= countdown)
     else:
@@ -262,7 +266,7 @@ def widget_init(root, tab1, tab2):
 
     dialogue_text = None
     
-   
+
 
     if not global_variables.tutorial_mode or global_variables.practice_mode:
         d_view = DialogueView(root, dialogueview_info)
@@ -281,6 +285,8 @@ def widget_init(root, tab1, tab2):
             avalogue.set_avalogue("t_default","start_q")
         else:
             avalogue.set_avalogue("t_default","t_start_q")
+
+        
     else:
         print("INJA!")
         a_view = None
@@ -368,8 +374,7 @@ def bind_keyboard(tab1, cursor_canvas_small, cursor_canvas_big, bar_canvas, dang
         tab1.bind('9', lambda e: start_tutorial(tab1, tutorial_fsm))
         tab1.bind('x', lambda e: playsound_beep_thread())
         tab1.bind('z', lambda e: playsound_beep_thread())
-        
-        
+         
     
 def color_transition(view_b, view_f,circle_canvas):
     view_b.color_transition()

@@ -388,13 +388,11 @@ class TutorialGUIMachine(StateMachine):
     s0 = State('S0', initial= True) 
     s1 = State('S1') #Start 
     s2 = State('S2') #Danger Start I / Manual Mode
-    s3 = State('S3') #Danger End I / Manual Mode
-    s4 = State('S4') #End
+    
 
     s01 = s0.to(s1) #Start 
     s12 = s1.to(s2) #Danger Start I 
-    s23 = s2.to(s3) #Danger End I
-    s34 = s3.to(s4) #End
+   
     
     DANGER_START_TIMER = 10
     DANGER_END_TIMER = 10
@@ -424,36 +422,20 @@ class TutorialGUIMachine(StateMachine):
 
     def on_s01(self):
         EventManager.post_event("unfreeze", -1)
-        global_variables.bar_controller = False
-        EventManager.post_event("start_move_bars", -1)
+        #global_variables.bar_controller = False
+        #EventManager.post_event("start_move_bars", -1)
         self.avalogue.set_avalogue("r_happy", "t_start_a")
         
         self.timer.start()
         
-        x = threading.Thread(target=self.danger_warning_tutorial)
-        x.start()
+       # x = threading.Thread(target=self.danger_warning_tutorial)
+        #x.start()
             
-    def on_s12(self):
-        def danger_start():
-            time.sleep(self.DANGER_START_TIMER)
-            self.normal_activate()
-            self.avalogue.set_avalogue("t_default", "t_danger_s")
-
-        x = threading.Thread(target=danger_start)
-        x.start()
-
-    def on_s23(self):
-        def danger_end():
-            time.sleep(self.DANGER_END_TIMER)
-            self.assistedmanual_disable()
-            self.avalogue.set_avalogue("t_default", "t_danger_e")
-
-        x = threading.Thread(target=danger_end)
-        x.start()
+   
         
-    def on_s34(self):
+    def on_s12(self):
         self.timer.stop()
-        global_variables.bar_controller = True
-        EventManager.post_event("stop_move_bars", -1)
+        #global_variables.bar_controller = True
+        #EventManager.post_event("stop_move_bars", -1)
         self.avalogue.set_avalogue("t_default", "t_end")
         

@@ -7,6 +7,7 @@ practice_mode = None # if true, start state machine and no binding, if false the
 bar_controller = True #true stop, false active. only for tutorial, in practice mode not training session
 
 
+
 social_mode = None 
 
 """
