@@ -288,7 +288,7 @@ class TaskCanvas(BaseCanvas):
         if global_variables.tutorial_mode:
             self.text = '0/1'
         else:
-            self.text = '0/13'
+            self.text = '0/1'
 
         self.count = 0
         self.canvas.create_text(self.width/2, self.height/2, text= self.text, fill= self.color, font= self.font)
@@ -310,40 +310,8 @@ class TaskCanvas(BaseCanvas):
       
         
         if not global_variables.tutorial_mode:
-            if c != 13:
-                EventManager.post_event("congratulations", -1)
-            
-        #Danger State I
-            if c == 2:
+          if c == 1:
                 self.fsm.s12()
-            elif c == 4:
-                if self.fsm.is_s2:
-                    self.fsm.s23()
-
-            #Danger State II
-            elif c == 6:
-                if self.fsm.is_s3:
-                    self.fsm.s34()
-            elif c == 8:
-                if self.fsm.is_s4:
-                    self.fsm.s45()
-
-            if c == 9:
-                #just to stop going forward, validating new codes will be denied until user makes a choice in
-                if self.fsm.is_s6:
-                    EventManager.post_event("try_again", -1)
-                    
-            #Danger State III
-            elif c == 10:
-                if self.fsm.is_s7:
-                    self.fsm.s78()
-            elif c == 12:
-                if self.fsm.is_s8:
-                    self.fsm.s89()
-            
-            #End
-            elif c == 13:
-                self.fsm.s910()
         else:
             
            if c == 1:
@@ -356,7 +324,7 @@ class TaskCanvas(BaseCanvas):
             self.canvas.delete('all')
             self.canvas.create_text(self.width/2, self.height/2, text= self.text, fill= self.color, font= self.font)
         else:
-            self.text = "{count}/13".format(count=str(c))
+            self.text = "{count}/1".format(count=str(c))
             self.canvas.delete('all')
             self.canvas.create_text(self.width/2, self.height/2, text= self.text, fill= self.color, font= self.font)
 

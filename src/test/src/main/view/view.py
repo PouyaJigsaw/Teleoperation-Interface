@@ -217,7 +217,7 @@ def main():
 
 
     if not global_variables.tutorial_mode:
-        gui_sfm = TeleopGUIMachine(timer_canvas, avalogue, dialogue_text, manual_button, auto_button, bar_canvas, danger_canvases, jackal_avatar= None, flashing_image=flashing_image, tsk_cnvs=task_canvas, cmr_frm = view_front, jckl_ai= jackal_ai, cntdwn= countdown)
+        gui_sfm = TutorialGUIMachine(timer= timer_canvas, amode_btn=auto_button, d_bars= danger_canvases, flashing_image= flashing_image, jckl_ai= jackal_ai, n_bar= bar_canvas, nmode_btn= manual_button, avalogue= avalogue)
     else:
         tutorial_fsm = TutorialGUIMachine(timer= timer_canvas, amode_btn=auto_button, d_bars= danger_canvases, flashing_image= flashing_image, jckl_ai= jackal_ai, n_bar= bar_canvas, nmode_btn= manual_button, avalogue= avalogue)
     

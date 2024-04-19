@@ -420,6 +420,7 @@ class TutorialGUIMachine(StateMachine):
         time.sleep(15)
         self.avalogue.set_avalogue("t_default", "t_danger_w")
 
+
     def on_s01(self):
         EventManager.post_event("unfreeze", -1)
         #global_variables.bar_controller = False
@@ -430,9 +431,7 @@ class TutorialGUIMachine(StateMachine):
         
        # x = threading.Thread(target=self.danger_warning_tutorial)
         #x.start()
-            
-   
-        
+              
     def on_s12(self):
         self.timer.stop()
         #global_variables.bar_controller = True
